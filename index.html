@@ -4,27 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-
-    <style>
-        p{
-            white-space: pre-line;
-        }
-
-        .book{
-            width: 50%;
-            height: 30%;
-            background: rgb(120, 37, 37);
-        }
-        
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class = 'btn con'>
+        <button id = 'mybtn'>New Book</button>
+    </div>
 
     <div class = 'container'>
-        <div class = 'book'>
             <p></p>
-        </div>
+
+           
+                <dialog id = 'dialog'>
+                    <form>
+                        <fieldset>
+                            <label for="title">Title</label>
+                            <input type="text" id="title" name="title">
+                            <label for="author">Author</label>
+                            <input type="text" id="author" name="author">
+                            <label for="pages">Pages</label>
+                            <input type="number" id="pages" name="pages">
+                        </fieldset>
+                       
+            
+                        <fieldset>
+                            <legend>Have you read it?</legend>
+                            <div class = 'yes'>
+                                <input type="radio" id="read" name="read" value="read">
+                                <label for="read">Yes</label>
+                            </div>
+                            <div class = 'no'>
+                                <input type="radio" id="not_read" name="read" value="not_read">
+                                <label for="not_read">No</label>
+                            </div>
+                           
+                        </fieldset>
+                        <div class = 'btn_submit'>
+                            <button id = 'submit' type="submit">Submit</button>
+                        </div>
+                       
+            
+                    </form>
+                </dialog>
+            
+            
     </div>
+
+
     <script src = 'index.js'></script>
 </body>
 </html>

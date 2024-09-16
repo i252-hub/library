@@ -1,5 +1,9 @@
-const p = document.querySelector('p');
+document.addEventListener('DOMContentLoaded', () => {
+
 const container = document.querySelector('.container')
+const Btn = document.querySelector('#mybtn');
+const dialog = document.querySelector('#dialog');
+const submitBtn = document.querySelector('#submit');
 
 const myLibrary = [];
 
@@ -18,25 +22,24 @@ function Book (title,author,pages,read){
 }
 
 function addBookToLibrary() {
-    const promptTitle = prompt('Title: ');
-    const promptAuthor = prompt('Author: ');
-    const promptPages = prompt('Pages: ');
-    const promptRead = prompt('Have you read it? (yes/no): ');
-
-    const newBook = new Book(promptTitle, promptAuthor, promptPages, promptRead);
+    const title = document.querySelector('#title').value;
+    const author = document.querySelector('#author').value;
+    const pages = document.querySelector('#pages').value;
+    const read = document.querySelector('input[name="read"]:checked').value;
+    const newBook = new Book(title,author,pages,read);
+   
     myLibrary.push(newBook)
   }
 
+  /*
 let addAnother = true;
 
 while(addAnother){
     addBookToLibrary()
     addAnother = prompt("Would you like to add another book? ") == 'yes';
-}
+}*/
 
-function display(){
-
-    myLibrary.forEach(lib => {
+function display(books){
         const book = document.createElement('div');
         book.classList.add('book');
         const newP = document.createElement('p');  
@@ -44,15 +47,37 @@ function display(){
         book.appendChild(newP);
         container.appendChild(book);
 
-        newP.textContent = lib.info();
-    })
+        newP.textContent = books.info();
+    }
    
-}
-
-display()
 
 
 
 
+Btn.addEventListener('click', () =>{
+dialog.showModal();
+});
 
+submitBtn.addEventListener('click', (event) =>{
+    addBookToLibrary();
+    const latest = myLibrary[myLibrary.length - 1];
+    display(latest);
+    event.preventDefault();
+    dialog.close();
+    document.querySelector('form').reset();
+
+
+});
+
+
+
+
+
+
+
+
+
+
+
+});
 
