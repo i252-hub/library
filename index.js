@@ -9,22 +9,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const myLibrary = [];
     let nextId = 1; 
 
-    function Book(title, author, pages, read) {
+    class Book{
+    constructor(title, author, pages, read){
         this.title = title;
         this.author = author;
         this.pages = pages;
         this.read = read;
         this.id = nextId++; 
 
-        this.info = function() {
+    }
+
+        info(){
             return `Title: ${this.title}
                     Author: ${this.author}
                     Pages: ${this.pages}
                     Status: ${this.read}`;
         }
     }
-
-    function addBookToLibrary() {
+    
+    class Library {
+    addBookToLibrary() {
         const title = document.querySelector('#title').value;
         const author = document.querySelector('#author').value;
         const pages = document.querySelector('#pages').value;
@@ -34,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
         myLibrary.push(newBook);
     }
 
-    function display(book) {
+    display(book) {
         const bookDiv = document.createElement('div');
         bookDiv.classList.add('book');
         bookDiv.dataset.id = book.id; 
@@ -54,7 +58,9 @@ document.addEventListener('DOMContentLoaded', () => {
         bookDiv.appendChild(edit);
 
         newP.textContent = book.info();
-    }
+    }}
+
+    const library = new Library();
 
     Btn.addEventListener('click', () => {
         dialog.showModal();
@@ -62,9 +68,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     submitBtn.addEventListener('click', (event) => {
         event.preventDefault(); 
-        addBookToLibrary();
+        library.addBookToLibrary();
         const latest = myLibrary[myLibrary.length - 1];
-        display(latest);
+        library.display(latest);
         dialog.close();
         document.querySelector('form').reset(); 
     });
@@ -94,6 +100,8 @@ document.addEventListener('DOMContentLoaded', () => {
     svG.addEventListener('click', () => {
         dialog.close();
     });
+
+
 
        
     });
